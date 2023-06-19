@@ -1,8 +1,7 @@
 ///////////// BC Landsat SST calculator 
 // By Alejandra Mora-Soto, 2023 
-//// geometry = BC maritime area
-//// Land Mask: Luba Reshitnyk, 2023
-
+//// geometry = BC maritime area. This code was defined for BC using a BC land mask defined below. 
+var BC_lm = projects/ee-kelpforests/assets/BC_Landsat_LowTide_Landmask_30m_bcalbers //// Land Mask: Luba Reshitnyk, 2023
 // Geometry = BC
 // Geometry2 = Strait of Georgia 
 // You can make your own geometries as well! 
