@@ -2,7 +2,7 @@
 // By Alejandra Mora-Soto, 2023 
 
 // Geometry = any given area
-// You can make your own geometries as well! 
+
 Map.setCenter(-124.211, 49.15, 8 )// Set Center: Vancouver Island 
 // Step 1= Set year and month 
 var month = ee.Filter.calendarRange(7, 8, 'month');// 7 and 8 for Summer; 5 and 6 for spring 
@@ -15,14 +15,14 @@ var dataL5 = ee.ImageCollection('LANDSAT/LT05/C02/T1_L2')
     .filter(year)
     .filter(month)
     .filter(cloudc)
-    .filterBounds(geometry2);
+    .filterBounds(geometry);
 
 ////////////////// Landsat 7 /////////////////// from 1999-05-28
 var dataL7 = ee.ImageCollection('LANDSAT/LE07/C02/T1_L2')
     .filter(year)
     .filter(month)
     .filter(cloudc)
-    .filterBounds(geometry2);
+    .filterBounds(geometry);
 
 
 /////////////////////////// Landsat 8////////////////////////from 2013-03-18
@@ -30,7 +30,7 @@ var dataL8 = ee.ImageCollection('LANDSAT/LC08/C02/T1_L2')
     .filter(year)
     .filter(month)
     .filter(cloudc)
-    .filterBounds(geometry2);
+    .filterBounds(geometry);
 
 
 //Scaling factors.
@@ -73,7 +73,7 @@ function thermal(image){
   var ther = image.select('ST_B6').subtract(273.15).rename('temp');
   return image.addBands(ther)
     .mask(BC_lm)
-    .clip(geometry2)
+    .clip(geometry)
     .select('temp')
     .updateMask(ther.gte(1));
 }
@@ -83,7 +83,7 @@ function thermal8(image){
   var therL8 = image.select('ST_B10').subtract(273.15).rename('temp');
   return image.addBands(therL8)
     .mask(BC_lm)
-  .clip(geometry2)
+  .clip(geometry)
   .select('temp')
    .updateMask(therL8.gte(1));
 }
